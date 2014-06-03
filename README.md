@@ -22,7 +22,7 @@ The gem includes the `s3_with_iam` command line tool.
 
 ## Usage
 
-Example:
+Getting a file out of S3 (using auto-discovered IAM roles):
 
     s3_with_iam --bucket example --key foo/example.txt --destination local/example.txt
 
@@ -30,7 +30,9 @@ Example:
 * `key` is the path on S3 within the bucket
 * `destination` is where you want to write the file locally
 
-See more help with `s3_with_iam -h`
+See all available options with:
+
+    s3_with_iam -h
 
 ## Contributing
 
