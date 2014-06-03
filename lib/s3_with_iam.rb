@@ -5,9 +5,8 @@ require 'bundler/setup'
 require 'net/http'
 require 'json'
 require 'aws-sdk'
-require 'trollop'
 
-class S3GetWithIAM
+class S3WithIAM
 
   CRED_ROOT_URL = 'http://169.254.169.254/latest/meta-data/iam/security-credentials/'
 
@@ -57,7 +56,7 @@ class S3GetWithIAM
     end
   end
 
-  def download(options)
+  def get(options)
     get_creds(options[:roles] || get_roles).each.find do |role, cred|
       begin
         puts "Trying download using role #{role}"
@@ -83,15 +82,4 @@ class S3GetWithIAM
     errputs "No such bucket '#{options[:bucket]}'"
   end
 
-end
-
-if __FILE__ == $0
-  options = Trollop::options do
-    opt :bucket,      "bucket",                 :short => '-b', :type => :string
-    opt :key,         "S3 object key",          :short => '-k', :type => :string
-    opt :destination, "Local file destination", :short => '-d', :type => :string
-    opt :region,      "AWS region",             :short => '-r', :type => :string, :default => 'us-east-1'
-    opt :roles,       "Try specific roles, will auto-discover roles by default", :short => '-o', :type => :string
-  end
-  S3GetWithIAM.new.download(options)
 end

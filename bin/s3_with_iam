@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require 's3_with_iam'
+require 'trollop'
+
+if __FILE__ == $0
+  options = Trollop::options do
+    opt :bucket,      "bucket",                 :short => '-b', :type => :string
+    opt :key,         "S3 object key",          :short => '-k', :type => :string
+    opt :destination, "Local file destination", :short => '-d', :type => :string
+    opt :region,      "AWS region",             :short => '-r', :type => :string, :default => 'us-east-1'
+    opt :roles,       "Try specific roles, will auto-discover roles by default", :short => '-o', :type => :string
+  end
+  S3WithIAM.new.get(options)
+end
