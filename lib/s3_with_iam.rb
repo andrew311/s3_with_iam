@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+require "s3_with_iam/version"
 
 require 'rubygems'
 require 'bundler/setup'
