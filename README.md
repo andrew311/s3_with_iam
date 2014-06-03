@@ -18,13 +18,16 @@ Or install it yourself as:
 
     $ gem install s3_with_iam
 
+The gem includes the `s3_with_iam` command line tool.
+
 ## Usage
 
 Example:
 
     s3_with_iam --bucket example --key foo/example.txt --destination local/example.txt
 
-* `key` is the path on S3
+* `bucket` is the bucket on S3
+* `key` is the path on S3 within the bucket
 * `destination` is where you want to write the file locally
 
 See more help with `s3_with_iam -h`
