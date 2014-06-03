@@ -79,6 +79,8 @@ class S3GetWithIAM
         false
       end
     end
+  rescue AWS::S3::Errors::NoSuchBucket
+    errputs "No such bucket '#{options[:bucket]}'"
   end
 
 end
